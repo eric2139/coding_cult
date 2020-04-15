@@ -1,5 +1,5 @@
 ---
-title: "Chapter3 Exercises"
+title: "Chapter 1 Exercises"
 output: html_document
 ---
 
