@@ -1,0 +1,73 @@
+---
+title: "Chapter 2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+# Can use R as a calculator
+1 / 200 * 30
+# Answer: > [1] 0.15
+(59 + 73 + 2) / 3
+# Answer: > [1] 44.7
+sin(pi / 2)
+# Answer > [1] 1
+
+# Can create new objects
+x <- 3 * 4
+# All R statements where you create objects, Assignment Statements, have the same form
+object_name <- value
+# When reading that code say “object name gets value” in your head.
+
+# Object names must start with a letter, and can only contain letters, numbers, _ and .
+i_use_snake_case
+otherPeopleUseCamelCase
+some.people.use.periods
+And_aFew.People_RENOUNCEconvention
+
+x
+# Answer: > [1] 12
+
+this_is_a_really_long_name <- 3.5
+# I don't get this shortcut
+"this"
+"this"
+
+# Typos matter. Case matters.
+r_rocks <- 2 ^ 3
+
+r_rock
+# Result: > Error: object 'r_rock' not found
+R_rocks
+# Result: > Error: object 'R_rocks' not found
+
+# R has a large collection of built-in functions that are called like this:
+function_name(arg1 = val1, arg2 = val2, ...)
+
+seq(1, 10)
+# Answer: >  [1]  1  2  3  4  5  6  7  8  9 10
+
+x <- "hello world"
+
+# The + tells you that R is waiting for more input. Usually that means you’ve forgotten either a " or a ).
+# Either add the missing pair, or press ESCAPE to abort the expression and try again.
+# > x <- "hello
+# This one is missing a " at the end.
+
+# This can be shorten
+y <- seq(1, 10, length.out = 5)
+y
+# Answer: > [1]  1.00  3.25  5.50  7.75 10.00
+
+# To this
+(y <- seq(1, 10, length.out = 5))
+# Answer: > [1]  1.00  3.25  5.50  7.75 10.00
+
+# your environment in the upper right pane tells you all the objects that you created
+
+```
+
