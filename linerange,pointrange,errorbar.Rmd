@@ -1,0 +1,74 @@
+---
+title: "Presentation 5/1/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(tidyverse)
+```
+
+#source: https://ggplot2.tidyverse.org/reference/geom_linerange.html
+#also something if you interested in error bars: https://www.benjaminbell.co.uk/2019/04/how-to-add-error-bars-in-r.html
+
+```{r}
+df <- data.frame(
+  x = factor(c(1, 1, 2, 2)),
+  y = c(1, 5, 3, 4),
+  group = factor(c(1, 2, 1, 2)),
+  upper = c(1.1, 5.3, 3.3, 4.2),
+  lower = c(0.8, 4.6, 2.4, 3.6)
+)
+
+p <- ggplot(df, aes(x, y, colour = group))
+p + geom_linerange(aes(ymin = lower, ymax = upper))
+# geom_linerange - draws line ranges, depending on what you defined is an upper and lower value (good for confidence intervals)
+```
+
+```{r}
+p + geom_pointrange(aes(ymin = lower, ymax = upper))
+# geom_pointrange = draws point ranges, depending on the upper and lower value for the line, and a value for the point (other ways of showing mean and error)
+```
+
+```{r}
+p + geom_crossbar(aes(ymin = lower, ymax = upper), width = 0.2)
+```
+
+```{r}
+p + geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.2)
+# draw error bars, depending on the upper and lower value (useful for confidence intervals)
+```
+
+```{r}
+p +
+  geom_line(aes(group = group)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.2)
+```
+
+```{r}
+p <- ggplot(df, aes(x, y, fill = group))
+p +
+ geom_col(position = "dodge") +
+ geom_errorbar(aes(ymin = lower, ymax = upper), position = "dodge", width = 0.25)
+# Two types:
+#1) geom_col - the height of the bars match the values represented in the data (recommend using this one)
+#2) geom_bar - the height of the bar is proportional to the number of cases in each group
+```
+
+```{r}
+dodge <- position_dodge(width=0.9)
+p +
+  geom_col(position = dodge) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), position = dodge, width = 0.25)
+```
+
+```{r}
+p + 
+  geom_col(position = "dodge2") +
+  geom_errorbar(aes(ymin = lower, ymax = upper),
+  position = position_dodge2(width = 0.5, padding = 0.5)
+  )
+```
+
